@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class NewsAdapter extends ArrayAdapter<News> {
@@ -39,6 +42,9 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         TextView date = listItemView.findViewById(R.id.article_date);
         date.setText(dateFormatted);
+
+        TextView author = listItemView.findViewById(R.id.article_author);
+        author.setText(currentNews.getArticleAuthor());
 
         return listItemView;
     }

@@ -10,14 +10,17 @@ public class News {
     private String mTitle;
     //Section to which it belongs
     private String mSection;
+    //Author of the article
+    private String mAuthor;
     //The date the article it was published
     private String mDate;
     //Url to direct to the page with the full article
     private String mUrl;
 
     /* The Constructor*/
-    public News(String title, String section, String date, String url) {
+    public News(String title,String author, String section, String date, String url) {
         mTitle = title;
+        mAuthor = author;
         mSection = section;
         mDate = date;
         mUrl = url;
@@ -42,4 +45,7 @@ public class News {
     public String getArticleUrl() {
         return mUrl;
     }
+
+    /*Return the author's name*/
+    public String getArticleAuthor(){return mAuthor;}
 }

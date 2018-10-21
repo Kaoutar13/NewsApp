@@ -4,6 +4,7 @@ package com.example.android.newsapp;
  *
  * */
 
+import android.content.res.Resources;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -28,6 +29,7 @@ public final class QueryUtils {
      * Tag for the log messages
      */
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
+    private final static String NO_AUTHOR = "unknown author";
 
     // private constructor
     private QueryUtils() {
@@ -99,7 +101,7 @@ public final class QueryUtils {
 
             // If the request was successful (response code 200),
             // then read the input stream and parse the response.
-            if (urlConnection.getResponseCode() == 200) {
+            if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
             } else {
@@ -154,22 +156,29 @@ public final class QueryUtils {
         try {
             //Create a JSONObject from the JSON response string
             JSONObject baseJsonResponse = new JSONObject(newsJson);
-            JSONObject responseObject = baseJsonResponse.getJSONObject("response");
+            JSONObject responseObject = baseJsonResponse.optJSONObject("response");
 
             //Extract the JSONArray
-            JSONArray newsArray = responseObject.getJSONArray("results");
+            JSONArray newsArray = responseObject.optJSONArray("results");
 
             //Extract the features we need for each news
             for (int i = 0; i < newsArray.length(); i++) {
-                JSONObject currentNews = newsArray.getJSONObject(i);
+                JSONObject currentNews = newsArray.optJSONObject(i);
 
-                String title = currentNews.getString("webTitle");
-                String section = currentNews.getString("sectionName");
-                String date = currentNews.getString("webPublicationDate");
-                String url = currentNews.getString("webUrl");
+                String title = currentNews.optString("webTitle");
+                String section = currentNews.optString("sectionName");
+                String date = currentNews.optString("webPublicationDate");
+                String url = currentNews.optString("webUrl");
+                String author = NO_AUTHOR;
+                if(currentNews.has("fields")){
+                    JSONObject fieldsObject = currentNews.optJSONObject("fields");
+                    if(fieldsObject.has("byline")){
+                        author = fieldsObject.optString("byline");
+                    }
+                }
 
                 //Create a new News Object with the extracted features
-                News newObject = new News(title, section, date, url);
+                News newObject = new News(title,author, section, date, url);
 
                 //Add the new object to the list of news
                 news.add(newObject);

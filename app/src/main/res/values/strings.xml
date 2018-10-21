@@ -4,6 +4,9 @@
     <!--In case no news are found-->
     <string name="no_news">No news currently found</string>
 
+    <!--No author found-->
+    <string name="no_author">unknown author</string>
+
     <!--In case there's no internet connection-->
     <string name="no_internet_connection">No internet connection</string>
 
