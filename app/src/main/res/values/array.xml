@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="order_by_labels">
+        <item>@string/newest_label</item>
+        <item>@string/oldest_label</item>
+    </string-array>
+    <string-array name="order_by_values">
+        <item>@string/newest_value</item>
+        <item>@string/oldest_value</item>
+    </string-array>
+</resources>
