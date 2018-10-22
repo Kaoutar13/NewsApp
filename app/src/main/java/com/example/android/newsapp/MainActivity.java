@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity
      */
     private static final int NEWS_LOADER_ID = 1;
     private NewsAdapter mAdapter;
-    private static final String GUARDIAN_REQUEST_URL = "http://content.guardianapis.com/search?from-date=2016-03-04&to-date=2016-03-04&order-by=newest&show-fields=all&page-size=200&api-key=test";
+    private static final String GUARDIAN_REQUEST_URL = "http://content.guardianapis.com/search?&show-fields=all&page-size=100&api-key=test";
     private TextView mEmptyState;
 
 

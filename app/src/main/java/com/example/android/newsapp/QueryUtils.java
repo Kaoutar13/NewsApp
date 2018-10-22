@@ -31,6 +31,7 @@ public final class QueryUtils {
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
     private final static String NO_AUTHOR = "unknown author";
 
+
     // private constructor
     private QueryUtils() {
     }
